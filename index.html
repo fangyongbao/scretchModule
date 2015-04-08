@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>TODO supply a title</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no" />
+		<link href="favicon.ico" rel="icon" type="image/x-icon" />
+		<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link href="favicon.ico" rel="bookmark" />
+		<script src="jquery.1.11.min.js"></script>
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				font-family: 微软雅黑, microsoft yahei;
+			}
+			.g-body {
+				max-width: 640px;
+				margin: 0 auto;
+				background-color: #fbc40f;
+				width:100%;
+				overflow: hidden;
+			}
+			.g-top {
+				position: relative;
+			}
+			.g-top img.topimg {
+				display: block;
+				margin: i auto;
+				width: 100%;
+			}
+			.g-top p {
+				position: absolute;
+				bottom: 10px;
+				text-align: center;
+				z-index: 1;
+				height: 24px;
+				line-height: 24px;
+				font-size: 12px;
+				width: 100%;
+			}
+			.g-top p i {
+				width: 20px;
+				height: 20px;
+				display: inline-block;
+				background: url("images/star.png") center;
+				background-size: cover;
+				margin-right: 2px;
+				vertical-align: text-bottom;
+			}
+			.g-top p span {
+				display: inline-block;
+				color: #d22b3f;
+			}
+			.m-price {
+				background-color: #d22b3f;
+			}
+			.m-price .bd {
+				width: 320px;
+				margin: 0 auto;
+				padding: 10px;
+			}
+			.m-price .tcell {
+				display: table-cell;
+				color: #ffffff;
+				font-size: 16px;
+				vertical-align: middle;
+			}
+			#scretch,
+			#scretch2 {
+				position: relative;
+				width: 220px;
+				height: 40px;
+			}
+			#scretch {
+				margin-left: 20px;
+			}
+			.m-price2 {
+				padding: 10px 0;
+			}
+			.m-price2 table,
+			.m-price3 table {
+				width: 300px;
+				margin: 0 auto;
+				font-size: 14px;
+			}
+			.m-price2 table td,
+			.m-price3 table td {
+				padding: 6px 4px;
+				text-align: left;
+			}
+			.m-price2 table tr > td:nth-child(1) {
+				color: #d22b3f;
+			}
+			.m-price2 table tr > td:nth-child(3) {
+				text-align: right;
+			}
+			.m-price3 {
+				width: 300px;
+				margin: 0 auto;
+				border: 1px dashed #7d6207;
+				border-radius: 6px;
+			}
+			.m-price3 p.top {
+				padding: 5px;
+				display: inline-block;
+				margin: 10px;
+				background-color: #0c0900;
+				color: #fbc40f;
+				text-indent: 10px;
+			}
+			.m-bottom {
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				font-size: 12px;
+				color: #764000;
+			}
+			.shareCover {
+				width: 100%;
+				height: 100%;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba(0, 0, 0, 0.2);
+				z-index: 1000;
+				position: fixed;
+				opacity: 0;
+				display: none;
+			}
+			.shareCover div {
+				width: 260px;
+				position: absolute;
+				left: 50%;
+                top:20%;
+				background-color: white;
+				/*-webkit-transform: translate(-50%, -50%);
+				-moz-transform: translate(-50%, -50%);
+				transform: translate(-50%, -50%);*/
+				margin-left:-140px;
+				padding: 10px;
+			}
+			.shareCover i {
+				width: 40px;
+				height: 40px;
+				border-radius: 10px;
+				position: absolute;
+				right: 0;
+				top: 0;
+				background: url(images/close.png) no-repeat center;
+				background-size: 18px auto;
+				z-index: 2;
+				cursor: pointer;
+			}
+			.shareCover p.title {
+				font-size: 16px;
+				text-align: center;
+				height: 40px;
+				line-height: 40px;
+				color: #333333;
+			}
+			.shareCover p.title span {
+				color: #d22b3f;
+			}
+			.shareCover p.info {
+				font-size: 14px;
+				color: #666666;
+				padding: 4px 10px;
+			}
+			.shareCover p.text {
+				padding: 6px 10px;
+				font-size: 14px;
+				color: #666666;
+			}
+			.shareCover p.text label {
+				display: inline-block;
+				height: 30px;
+				line-height: 30px;
+				text-align: left;
+				width: 64px;
+			}
+			.shareCover p.text input {
+				border: 1px solid gray;
+				height: 30px;
+				text-indent: 10px;
+				border: 1px solid #cccccc;
+				width: 166px;
+			}
+			.shareCover a.sub {
+				width: 96%;
+				display: block;
+				height: 30px;
+				text-align: center;
+				line-height: 30px;
+				color: #ffffff;
+				font-size: 16px;
+				background-color: #fbc40f;
+				text-decoration: none;
+				margin: 10px auto 15px;
+			}
+			.bounceIn {
+				-webkit-animation: bounceIn 0.5s linear forwards;
+				-moz-animation: bounceIn 0.5s linear forwards;
+			}
+			@-webkit-keyframes bounceIn {
+				0% {
+					opacity: 0;
+					-webkit-transform: scale(.3);
+				}
+				50% {
+					opacity: 1;
+					-webkit-transform: scale(1.05);
+				}
+				70% {
+					opacity: 1;
+					-webkit-transform: scale(.9);
+				}
+				100% {
+					opacity: 1;
+					-webkit-transform: scale(1);
+				}
+			}
+			@-moz-keyframes bounceIn {
+				0% {
+					opacity: 0;
+					-moz-transform: scale(.3);
+				}
+				50% {
+					opacity: 1;
+					-moz-transform: scale(1.05);
+				}
+				70% {
+					opacity: 1;
+					-moz-transform: scale(.9);
+				}
+				100% {
+					opacity: 1;
+					visibility: visible;
+					-moz-transform: scale(1);
+				}
+			}
+			input,
+			button {
+				-webkit-appearance: none;
+				outline: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="shareCover">
+			<div>
+				<i></i>
+				<p class="title">恭喜您！成功刮得<span>二等奖</span>
+				</p>
+				<p class="info">请输入您的手机号和邮箱，我们将会联系您核实信息并发放奖品 </p>
+				<p class="text">
+					<label>手机号：</label>
+					<input type="text" name="" id="" value="" />
+				</p>
+				<p class="text">
+					<label>邮箱：</label>
+					<input type="text" name="" id="" value="" />
+				</p>
+				<a href="javascript:;" class="sub">提交</a>
+			</div>
+		</div>
+		<div class=g-body>
+			<div class="g-top">
+				<img src="images/top.jpg" class="topimg" />
+				<p><i></i><span>活动时间：11月15日至11月21日（每日限刮一次）</span>
+				</p>
+			</div>
+			<div class="m-price">
+				<div class="bd">
+					<div class="tcell">刮奖区</div>
+					<div class="tcell">
+						<div id="scretch"></div>
+					</div>
+				</div>
+			</div>
+			<div class="m-price2">
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td>一等奖：</td>
+						<td>巴萨正版球衣一件</td>
+						<td>2名 </td>
+					</tr>
+					<tr>
+						<td>二等奖：</td>
+						<td>国家队球衣一件</td>
+						<td>3名 </td>
+					</tr>
+					<tr>
+						<td>三等奖：</td>
+						<td>妮维雅男士护肤套装</td>
+						<td>30名 </td>
+					</tr>
+				</table>
+			</div>
+			<div class="m-price3">
+				<p class="top">目前已有<span>XX</span>位幸运用户中奖</p>
+				<table border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td>138*************</td>
+						<td>二等奖</td>
+						<td>11月15日</td>
+					</tr>
+					<tr>
+						<td>138*************</td>
+						<td>二等奖</td>
+						<td>11月15日</td>
+					</tr>
+					<tr>
+						<td>138*************</td>
+						<td>二等奖</td>
+						<td>11月15日</td>
+					</tr>
+					<tr>
+						<td>138*************</td>
+						<td>二等奖</td>
+						<td>11月15日</td>
+					</tr>
+					<tr>
+						<td>138*************</td>
+						<td>二等奖</td>
+						<td>11月15日</td>
+					</tr>
+					<tr>
+						<td>138*************</td>
+						<td>二等奖</td>
+						<td>11月15日</td>
+					</tr>
+				</table>
+			</div>
+			<p class="m-bottom">本次活动最终解释权归欢呼吧社区所有</p>
+
+		</div>
+
+
+
+
+
+
+		<script src="scretchModule.js"></script>
+		<script type="text/javascript">
+			(function() {
+				$(function() {
+					$(".shareCover i").on("click", function() {
+						$(".shareCover").hide();
+						$(".shareCover").removeClass("bounceIn");
+					});
+
+
+
+				});
+				var option = {
+					node: document.getElementById("scretch"),
+					width: 220,
+					height: 40,
+					backImgType: "text",
+					backImgSrc: "100元",
+					frontImgType: "text",
+					frontImgSrc: "",
+					percentPar: 50, //1-100表示透明区域的百分比
+					backFun: function() {
+						$(".shareCover").show();
+						$(".shareCover").addClass("bounceIn");
+					}
+				};
+				var myCanvas1 = new Scretch(option);
+			})();
+		</script>
+
+	</body>
+
+</html>
