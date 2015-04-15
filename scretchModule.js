@@ -3,6 +3,7 @@
  * data : 2014.07.14
  * model : 刮刮乐模块
  * info ：知识在于积累，每天一小步，成功永远属于坚持的人。
+ * blog : http://www.best-html5.net
  */
 
 /*
@@ -17,6 +18,9 @@
  *   @param percentPar: 10, //1-100表示
  *   @param backFun: "backFun"
  * }
+ * 
+ * return obj
+ *   
  *
  */
 function Scretch(option) {
